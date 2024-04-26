@@ -10,8 +10,8 @@ export default function SignOutButton() {
   }
 
   return (
-    <Button onClick={handleButtonClick}>
-      Log Out
+    <Button variant="link" className="p-0 h-fit" onClick={handleButtonClick}>
+      Sign Out
     </Button>
 
   )
