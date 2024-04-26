@@ -1,6 +1,8 @@
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 
+import { formatDateTime } from "@/utils/time";
+
 export interface SidebarStatusProps {
   title: string,
   updatedAt: string,
@@ -8,29 +10,7 @@ export interface SidebarStatusProps {
 }
 
 export function SidebarStatus({status}: {status: SidebarStatusProps}) {
-  function formatDateTime(datetime: string): string {
-    const currentTime = new Date();
-    const targetTime = new Date(datetime);
-    const timeDifference = currentTime.getTime() - targetTime.getTime();
-
-    const seconds = Math.floor(timeDifference / 1000);
-    if (seconds < 60) {
-      return `${seconds} seconds ago`;
-    }
-
-    const minutes = Math.floor(timeDifference / (1000 * 60));
-    if (minutes < 60) {
-      return `${minutes} minutes ago`;
-    }
-
-    const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-    if (hours < 24) {
-      return `${hours} hours ago`;
-    }
-
-    const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-    return `${days} days ago`;
-  }
+  
 
   // Usage:
   // const updatedAt = "2022-01-01T12:00:00Z";

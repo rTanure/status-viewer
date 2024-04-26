@@ -9,7 +9,7 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
     },
     select: {
       id: true,
-      owner: true,
+      ownerName: true,
       title: true,
       data: true,
       updatedAt: true,
