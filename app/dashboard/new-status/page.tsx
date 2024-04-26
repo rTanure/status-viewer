@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import axios from "axios"
+
 
 export default function NewStatus() {
 
@@ -14,7 +16,9 @@ export default function NewStatus() {
 
     const title = form.TitleField.value
     
-    console.log(title)
+    axios.post("/api/status", {title})
+      .then(res => console.log(res))
+      .catch(err => console.error(err))
   }
 
   return (
@@ -29,7 +33,7 @@ export default function NewStatus() {
           <form onSubmit={handleSubmit} className="flex flex-col items-end gap-6">
             <div className="w-full">
               <Label>Title</Label>
-              <Input type="text" className="text-lg" name="TitleField" />
+              <Input required type="text" className="text-lg" name="TitleField" />
             </div>
             <Button type="submit">Create</Button>
           </form>

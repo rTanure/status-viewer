@@ -7,6 +7,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SidebarStatus } from "../_components/SidebarStatus";
+import { StatusList } from "../_components/StatusList";
 
 export default async function RootLayout({
   children,
@@ -22,21 +23,12 @@ export default async function RootLayout({
       <div className=" flex flex-col border w-72 h-screen">
         <SidebarUserData />
         <Separator />
-        <ScrollArea className="px-4">
-          <div className="h-fit flex flex-col gap-3 relative py-4">
-            <h1 className="font-semibold text-2xl sticky">My Status:</h1>
-            <SidebarStatus />
-            <SidebarStatus />
-            <SidebarStatus />
-            <SidebarStatus />
-          </div>
-          <div className="h-fit flex flex-col gap-3 relative py-4">
+        <ScrollArea className="px-4 flex-1">
+          <StatusList />
+          {/* <div className="h-fit flex flex-col gap-3 relative py-4">
             <h1 className="font-semibold text-2xl sticky">My favorites:</h1>
-            <SidebarStatus />
-            <SidebarStatus />
-            <SidebarStatus />
-            <SidebarStatus />
-          </div>
+            <p>Will be implemented</p>
+          </div> */}
         </ScrollArea>
         <Separator />
         <div className="p-4 flex">

@@ -51,8 +51,24 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  Status        Status[]
 
   @@map("users")
+}
+
+model Status {
+  id     String @id @default(cuid())
+  secret String @default(uuid())
+
+  owner     User   @relation(fields: [ownerId], references: [id])
+  ownerId   String
+  ownerName String
+
+  title String
+  data  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt()
 }
 
 model VerificationToken {
