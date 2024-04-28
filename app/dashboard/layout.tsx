@@ -19,7 +19,7 @@ export default async function RootLayout({
   if(!session) redirect("/auth")
 
   return (
-    <div className="flex">
+    <div className="flex items-stretch">
       <div className=" flex flex-col border w-72 h-screen">
         <SidebarUserData />
         <Separator />
@@ -39,7 +39,7 @@ export default async function RootLayout({
           </Link>
         </div>
       </div>
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 h-screen">
         {children}
       </div>
     </div>
