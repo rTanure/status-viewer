@@ -1,6 +1,12 @@
 import prisma from "@/utils/db"
 
-export async function GET(req: Request, {params}: {params: {id: string}}) {
+interface ParamsProps {
+  id: string
+}
+
+export const dynamic = 'force-dynamic'
+
+export async function GET(req: Request, {params}: {params: ParamsProps}) {
   const { id } = params
 
   const status = await prisma.status.findUnique({
@@ -18,4 +24,14 @@ export async function GET(req: Request, {params}: {params: {id: string}}) {
   if(!status) return Response.json({message: "Status not found"}, {status: 404})
 
   return Response.json(status)
+}
+
+export async function DELETE(req: Request, {params}: {params: ParamsProps}) {
+  const { id } = params
+
+  await prisma.status.delete({
+    where: {
+      id
+    }
+  })
 }

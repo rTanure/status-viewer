@@ -38,5 +38,4 @@ export async function PATCH(
 
   // Return success
   return Response.json({message: "status updated"}, {status: 200})
-  
 }

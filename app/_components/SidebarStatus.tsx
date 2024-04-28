@@ -1,21 +1,30 @@
+"use client"
+
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
+
+import { useEffect, useState } from "react";
 
 import { formatDateTime } from "@/utils/time";
 
 export interface SidebarStatusProps {
   title: string,
-  updatedAt: string,
+  updatedAt: Date,
   id: string
 }
 
 export function SidebarStatus({status}: {status: SidebarStatusProps}) {
-  
+  const [segundos, setSegundos] = useState(0);
 
-  // Usage:
-  // const updatedAt = "2022-01-01T12:00:00Z";
-  // const formattedTime = formatDateTime(updatedAt);
-  // console.log(formattedTime);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSegundos(prevSegundos => prevSegundos + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []); 
+
+
 
   return (
     <Link href={`/status/${status.id}`}>
