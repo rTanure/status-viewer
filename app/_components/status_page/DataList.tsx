@@ -1,15 +1,8 @@
 "use client"
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+import { Skeleton } from "@/components/ui/skeleton"
 
-interface DataProps extends Record<string, string | number | boolean | DataProps>{
-  
-}
+interface DataProps extends Record<string, string | number | boolean | DataProps>{}
 
 interface DataListProps {
   data: DataProps | undefined
@@ -52,8 +45,28 @@ export default function DataList({ data }: DataListProps) {
 
     return length
   }
+  
+  // data = undefined
+  
+  if(data === undefined) return (
+    <div className="flex flex-col justify-center gap-4"> 
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+      <Skeleton className="w-full h-10"/>
+    </div>
+  )
 
-  if(!data) return <div>You don't post any data to the base</div>
+  if(Object.keys(data).length === 0) return (
+    <div className="flex justify-center">
+      <h3 className="text-2xl font-semibold text-secondary-foreground">No data to show</h3>
+    </div>
+  )
+
 
   return(
     <div className="flex flex-col gap-2 flex-1">
@@ -76,5 +89,6 @@ export default function DataList({ data }: DataListProps) {
         })
       }
     </div>
+    
   )
 }
