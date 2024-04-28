@@ -1,4 +1,4 @@
-export function formatDateTime(datetime: string): string {
+export function formatDateTime(datetime: Date): string {
   const currentTime = new Date();
   const targetTime = new Date(datetime);
   const timeDifference = currentTime.getTime() - targetTime.getTime();

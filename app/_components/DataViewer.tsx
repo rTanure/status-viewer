@@ -1,13 +1,10 @@
-"use client"
-
 import axios from "axios"
-import { useEffect, useState } from "react"
 import DataList from "./DataList"
 
 import { formatDateTime } from "@/utils/time";
 import { Separator } from "@/components/ui/separator";
-
-
+import prisma from "@/utils/db";
+import { Status } from "@prisma/client";
 interface StatusProps {
   id: string,
   ownerName: string,
@@ -16,16 +13,24 @@ interface StatusProps {
   updatedAt: string
 }
 
-export default function DataViewer({id}: {id: string}) {
-  const [status, setStatus] = useState<StatusProps | null>(null)
+async function getStatusById(id: string): Promise<Status | null> {
+  const status = await prisma.status.findUnique({
+    where: {
+      id
+    }
+  })
+  if(!status) return null
 
-  useEffect(()=> {
-    axios.get(`/api/status/${id}`)
-      .then(res => setStatus(res.data))
-      .catch(err => console.error(err))
-  }, [])
+  return status
+}
 
+export default async function DataViewer({id}: {id: string}) {
+  const status = await getStatusById(id)
+
+  if(status === null) return <h1>Not found</h1>
+  
   const data = JSON.parse(status?.data || "{}")
+
 
   return (
     <div className="container">
@@ -33,7 +38,7 @@ export default function DataViewer({id}: {id: string}) {
         <h1 className="text-3xl font-bold">Status: {status?.title}</h1>
         <div className="text-right">
           <p className="text-lg  text-primary">{status?.ownerName}</p>
-          <p><span className="font-bold">{formatDateTime(status?.updatedAt as string)}</span></p>
+          <p><span className="font-bold">{formatDateTime(status?.updatedAt)}</span></p>
         </div>
       </div>
       <Separator className="mb-6" />
