@@ -19,11 +19,21 @@ interface StatusProps {
 
 export default function DataViewer({id}: {id: string}) {
   const [ status, setStatus ] = useState<StatusProps | undefined>(undefined)
+  const TIMEOUT = 2
 
-  useEffect(()=> {
+  const fetchData = async () => {
     axios.get(`/api/status/${id}`).then(res => {
       setStatus(res.data)
     })
+  }
+
+  useEffect(()=> {
+    fetchData()
+    const interval = setInterval(() => {
+      fetchData()
+    }, 1000 * TIMEOUT);
+
+    return () => clearInterval(interval);
   }, [])
   
   const data = status ? JSON.parse(status?.data || "{}") : undefined

@@ -17,8 +17,14 @@ export default function NewStatus() {
     const title = form.TitleField.value
     
     axios.post("/api/status", {title})
-      .then(res => console.log(res))
-      .catch(err => console.error(err))
+      .then(res => {
+        console.log(res.data.newStatus.id)
+        const URL = "/status/" + res.data.newStatus.id
+        window.location.href = URL
+      })
+      .catch(err => {
+
+      })
   }
 
   return (

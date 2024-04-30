@@ -37,7 +37,7 @@ export async function POST(req: Request, context: ContextProps) {
     }
   })
 
-  return Response.json({}, {status: 201})
+  return Response.json({newStatus}, {status: 201})
 }
 
 export async function GET() {

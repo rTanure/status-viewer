@@ -1,5 +1,8 @@
+"use client"
+
 import { Skeleton } from "@/components/ui/skeleton"
 import { formatDateTime } from "@/utils/time"
+import { useEffect, useState } from "react"
 
 export interface DataHeaderProps {
   title?: string,
@@ -9,6 +12,16 @@ export interface DataHeaderProps {
 
 export function DataHeader(props: DataHeaderProps) {
   const { title, ownerName, updatedAt } = props
+  const [segundos, setSegundos] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSegundos(prevSegundos => prevSegundos + 1);
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []); 
+  
 
   return (
     <div className="flex h-20 justify-between items-center p-4">
@@ -22,7 +35,7 @@ export function DataHeader(props: DataHeaderProps) {
           ? (
             <div className="text-right flex h-full flex-col">
               <p className="text-lg  text-primary flex-1">{ownerName}</p>
-              <p><span className="font-bold flex1">{formatDateTime(updatedAt)}</span></p>
+              <p><span className="font-bold flex1">last update: {formatDateTime(updatedAt)}</span></p>
             </div>
           )
           : (
