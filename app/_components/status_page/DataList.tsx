@@ -71,12 +71,12 @@ export default function DataList({ data }: DataListProps) {
   return(
     <div className="flex flex-col gap-2 flex-1">
       {
-        Object.entries(data).map(([key, value]) => {
+        Object.entries(data).map(([key, value], index) => {
           if(typeof value === "object") {
             let length = 0
             
             return (
-              <div className="-mb-3">
+              <div className="-mb-3" key={index}>
                 <DataHeader title={key} length={lengthOf(value)}/>
                 <div className="flex pl-4 pt-3 border-l-2 border-secondary-foreground -translate-y-3">
                   <DataList data={value} />
@@ -85,7 +85,7 @@ export default function DataList({ data }: DataListProps) {
             )
           }
 
-          return <DataCard title={key} value={value}/>
+          return <DataCard title={key} value={value} key={index}/>
         })
       }
     </div>

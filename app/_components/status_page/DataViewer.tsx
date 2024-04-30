@@ -32,7 +32,9 @@ export default function DataViewer({id}: {id: string}) {
     <div className="container">
       <DataHeader title={status?.title} ownerName={status?.ownerName} updatedAt={status?.updatedAt} />
       <Separator className="mb-6" />
-      <DataList data={data}/>
+      <div>
+        <DataList data={data}/>
+      </div>
     </div>
   )
 }
