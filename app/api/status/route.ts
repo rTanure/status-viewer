@@ -59,6 +59,9 @@ export async function GET() {
       title: true,
       updatedAt: true,
       id: true
+    },
+    orderBy: {
+      updatedAt: "desc"
     }
   })
 

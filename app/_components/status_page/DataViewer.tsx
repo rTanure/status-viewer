@@ -19,7 +19,7 @@ interface StatusProps {
 
 export default function DataViewer({id}: {id: string}) {
   const [ status, setStatus ] = useState<StatusProps | undefined>(undefined)
-  const TIMEOUT = 2
+  const TIMEOUT = 15
 
   const fetchData = async () => {
     axios.get(`/api/status/${id}`).then(res => {
