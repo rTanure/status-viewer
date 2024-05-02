@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 
 import {SidebarStatusProps} from "./SidebarStatus"
-import { Skeleton } from "@/components/ui/skeleton";
+import {Skeleton} from "@/components/ui/skeleton";
 
 export function StatusList() {
   const [statusList, setStatusList] = useState<SidebarStatusProps[]>([])
@@ -15,15 +15,9 @@ export function StatusList() {
 
   const fetchData = async () => {
     axios.get("/api/status")
-      .then(res => {
-        setStatusList(res.data)
-      })
-      .catch(err => {
-        console.error(err)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
+      .then(res => setStatusList(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setIsLoading(false))
   }
 
   useEffect(()=>{

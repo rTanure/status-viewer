@@ -8,6 +8,11 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { SidebarStatus } from "../_components/SidebarStatus";
 import { StatusList } from "../_components/StatusList";
+import { Metadata } from "next/types";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+}
 
 export default async function RootLayout({
   children,
