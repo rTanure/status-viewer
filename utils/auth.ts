@@ -11,7 +11,8 @@ export const authOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET_ID as string
+      clientSecret: process.env.GITHUB_SECRET_ID as string,
+      checks: [ 'none' ]
     })
   ],
   secret: process.env.NEXT_PUBLIC_SECRET as string,
