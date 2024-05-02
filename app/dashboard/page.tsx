@@ -1,12 +1,11 @@
 "use client"
 
-import { NextRequest } from "next/server";
 import { useSearchParams } from "next/navigation";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 
-export default function Dashboard(req: NextRequest) {
+export default function Dashboard() {
 
   const searchParams = useSearchParams()
   const status = searchParams.get("status")

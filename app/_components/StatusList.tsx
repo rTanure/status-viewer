@@ -46,7 +46,7 @@ export function StatusList() {
           ) 
           : (
             statusList.length === 0 
-              ? (<p className="text-center text-primary">You don't have status</p>) 
+              ? (<p className="text-center text-primary">You don&apos;t have status</p>) 
               : statusList.map((status, index)=> (
                 <SidebarStatus status={status} key={index}/>
               ))    

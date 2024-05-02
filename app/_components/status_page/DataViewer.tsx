@@ -21,20 +21,22 @@ export default function DataViewer({id}: {id: string}) {
   const [ status, setStatus ] = useState<StatusProps | undefined>(undefined)
   const TIMEOUT = 15
 
-  const fetchData = async () => {
-    axios.get(`/api/status/${id}`).then(res => {
-      setStatus(res.data)
-    })
-  }
+  
 
   useEffect(()=> {
+    const fetchData = async () => {
+      axios.get(`/api/status/${id}`).then(res => {
+        setStatus(res.data)
+      })
+    }
+
     fetchData()
     const interval = setInterval(() => {
       fetchData()
     }, 1000 * TIMEOUT);
 
     return () => clearInterval(interval);
-  }, [])
+  }, [id])
   
   const data = status ? JSON.parse(status?.data || "{}") : undefined
 
