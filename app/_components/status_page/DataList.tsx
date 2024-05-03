@@ -20,16 +20,16 @@ interface DataHeaderProps {
 
 function DataCard({ title, value }: DataCardProps) {
   return (
-    <div className="border-2 border-secondary-foreground text-primary flex justify-between p-2 rounded-sm">
-      <h3 className="text-xl font-bold opacity-80">{title}</h3>
-      <p className="text-xl font-medium">{value}</p>
+    <div className="border-2 border-secondary-foreground flex flex-col justify-between p-2 rounded-sm">
+      <h3 className="font-bold opacity-80">{title}</h3>
+      <p className="font-medium text-right">{value}</p>
     </div>
   )
 }
 const DataHeader: React.FC<DataHeaderProps> = ({ title, length, ...props }) =>  {
   return (
-    <div  className="bg-primary-foreground border-2 border-secondary-foreground flex justify-between p-2 text-black rounded-sm mb-2">
-      <h3 className="text-xl font-bold text-primary">{title}</h3>
+    <div  className="bg-primary-foreground border-2 border-secondary-foreground flex justify-between p-2  rounded-sm mb-2">
+      <h3 className="font-bold">{title}</h3>
       {/* <p className="text-xl font-bold">[{length}]</p> */}
     </div>
   )
@@ -63,7 +63,7 @@ export default function DataList({ data }: DataListProps) {
 
   if(Object.keys(data).length === 0) return (
     <div className="flex justify-center">
-      <h3 className="text-2xl font-semibold text-secondary-foreground">No data to show</h3>
+      <h3 className="text-2xl font-semibold">No data to show</h3>
     </div>
   )
 
