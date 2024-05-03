@@ -44,7 +44,7 @@ export default async function RootLayout({
           </Link>
         </div>
       </div>
-      <div className="flex-1 p-4 h-screen">
+      <div className="flex-1 max-h-screen px-4">
         {children}
       </div>
     </div>

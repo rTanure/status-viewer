@@ -9,8 +9,8 @@ export const dynamic = "force-dynamic"
 
 export default function Status({params}: {params: {id: string}}) {
   return (
-    <div className="">
-      <ScrollArea className="">
+    <div className="h-screen py-4">
+      <ScrollArea className="h-full">
         <DataViewer id={params.id}/>
       </ScrollArea>
       <Dialog >
